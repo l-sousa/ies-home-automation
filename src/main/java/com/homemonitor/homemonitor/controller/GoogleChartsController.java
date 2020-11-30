@@ -13,10 +13,22 @@ public class GoogleChartsController {
     @GetMapping("/hello")
     public String getPieChart(Model model) {
         Map<String, Integer> graphData = new TreeMap<>();
-        graphData.put("2016", 147);
-        graphData.put("2017", 1256);
-        graphData.put("2018", 3856);
-        graphData.put("2019", 19807);
+        graphData.put("15:30:00", 21);
+        graphData.put("15:30:05", 20);
+        graphData.put("15:30:10", 19);
+        graphData.put("15:30:15", 19);
+        graphData.put("15:30:20", 20);
+        graphData.put("15:30:25", 21);
+        graphData.put("15:30:30", 22);
+        graphData.put("15:30:35", 23);
+        graphData.put("15:30:40", 23);
+        graphData.put("15:30:45", 22);
+        graphData.put("15:30:50", 21);
+        graphData.put("15:30:55", 20);
+        graphData.put("15:31:00", 19);
+        graphData.put("15:31:05", 18);
+        graphData.put("15:31:10", 18);
+        graphData.put("15:31:15", 18);
         model.addAttribute("chartData", graphData);
         return "hello";
     }
