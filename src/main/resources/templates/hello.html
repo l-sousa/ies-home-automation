@@ -747,8 +747,8 @@
 
         function drawColumnChart() {
             var data = new google.visualization.DataTable();
-            data.addColumn('string', 'Year');
-            data.addColumn('number', 'Views');
+            data.addColumn('string', 'Hora');
+            data.addColumn('number', 'Temperatura');
             Object.keys(real_data).forEach(function(key) {
                 data.addRow([ key, real_data[key] ]);
             });
