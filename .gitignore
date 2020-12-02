@@ -23,3 +23,8 @@
 hs_err_pid*
 .mvn
 .idea
+bin/
+.classpath
+.project
+.settings/
+
