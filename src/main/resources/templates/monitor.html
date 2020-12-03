@@ -16,7 +16,7 @@
 
         <!-- Custom styles for this template-->
         <link rel="stylesheet" th:href="@{/css/sb-admin-2.css}">
-
+        <link rel="stylesheet" th:href="@{/css/custom.css}">
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
     </head>
@@ -29,7 +29,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" th:href="@{/monitor}">
                 <!--
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
@@ -43,23 +43,55 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" th:href="@{/hello}">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
+                <a class="nav-link" th:href="@{/monitor}">
+                    <i class="fas fa-fw fa-home" style="color: white"></i>
+                    <span>Divisões</span></a>
                 <a class="nav-link" th:href="@{/plantas}">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <i class="fas fa-fw fa-leaf" style="color: white"></i>
                     <span>Plantas</span></a>
+                <a class="nav-link" th:href="@{/movimento}">
+                    <i class="fas fa-fw fa-door-open" style="color: white"></i>
+                    <span>Movimento</span></a>
             </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider">
+            <div class="card bg-success text-white shadow side-card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-8">
+                            Chama
+                            <div class="text-white-50 small">Não detetada</div>
+                        </div>
+                        <div class="col-4">
+                            <i class="fas fa-fire fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top: 10px" class="card bg-success text-white shadow side-card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-8">
+                            Inundação
+                            <div class="text-white-50 small">Não detetada</div>
+                        </div>
+                        <div class="col-4">
+                            <i class="fas fa-tint fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Divider -->
+            <hr class="sidebar-divider">
 
-            <!-- Heading -->
+
+            <!--
             <div class="sidebar-heading">
                 Interface
             </div>
 
-            <!-- Nav Item - Pages Collapse Menu -->
+
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                    aria-expanded="true" aria-controls="collapseTwo">
@@ -75,7 +107,7 @@
                 </div>
             </li>
 
-            <!-- Nav Item - Utilities Collapse Menu -->
+
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                    aria-expanded="true" aria-controls="collapseUtilities">
@@ -94,15 +126,15 @@
                 </div>
             </li>
 
-            <!-- Divider -->
+
             <hr class="sidebar-divider">
 
-            <!-- Heading -->
+
             <div class="sidebar-heading">
                 Addons
             </div>
 
-            <!-- Nav Item - Pages Collapse Menu -->
+
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                    aria-expanded="true" aria-controls="collapsePages">
@@ -123,34 +155,35 @@
                 </div>
             </li>
 
-            <!-- Nav Item - Charts -->
+
             <li class="nav-item">
                 <a class="nav-link" href="charts.html">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Charts</span></a>
             </li>
 
-            <!-- Nav Item - Tables -->
+
             <li class="nav-item">
                 <a class="nav-link" href="tables.html">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Tables</span></a>
             </li>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
 
+            <hr class="sidebar-divider d-none d-md-block">
+            -->
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
 
-            <!-- Sidebar Message -->
+            <!--
             <div class="sidebar-card">
                 <img class="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="">
                 <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!</p>
                 <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
             </div>
+            -->
 
         </ul>
         <!-- End of Sidebar -->
@@ -168,6 +201,10 @@
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
                     </button>
+
+                    <div class="d-none d-sm-inline-block mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <h1 class="h3 mb-0 text-gray-800">Casa do Dinis</h1>
+                    </div>
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -319,7 +356,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><h1 th:inline="text">[[${#httpServletRequest.remoteUser}]]!</h1></span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><h4 class="user_settings" th:inline="text">[[${#httpServletRequest.remoteUser}]]</h4></span>
                                 <img class="img-profile rounded-circle"
                                      src="img/undraw_profile.svg">
                             </a>
@@ -341,7 +378,7 @@
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#">
                                     <form th:action="@{/logout}" method="post">
-                                        <input type="submit" value="Sign Out"/>
+                                        <input id="signout" type="submit" value="Sign Out"/>
                                     </form>
                                 </a>
                             </div>
@@ -358,55 +395,54 @@
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Cozinha</h1>
-                        <!-- Rounded switch -->
-                        <div class="d-flex flex-nowrap justify-content-between" style="width: 9em;">
-                            <h3>Lights</h3>
-                            <label class="switch">
-                                <input type="checkbox">
-                                <span class="slider round"></span>
-                            </label>
-                        </div>
+
                     </div>
                     <!-- Content Column -->
                     <div class="row">
                         <!-- Content Column -->
                         <div class="col-lg-12 mb-8">
                             <!-- Project Card Example -->
-                            <div class="card shadow " data-toggle="collapse" data-target="#collapseKitchen" aria-expanded="false" aria-controls="collapseOne">
-                                <div class="card-body">
+                            <div class="card shadow" style="background-image: url('/img/kitchen.jpeg');"  aria-expanded="false" aria-controls="collapseOne">
+                                <div class="card-body division_card_out">
                                     <div class="row division_row">
-                                        <div class="col" style="display:flex; justify-content: center">
-                                            <img class="division_img" th:src="@{/img/kitchen.jpeg}">
+                                        <div class="col" style="display:flex; justify-content: center" data-target="#collapseKitchen" data-toggle="collapse">
+                                            <!--<img data-target="#collapseKitchen" data-toggle="collapse" class="division_img" th:src="@{/img/kitchen.jpeg}">-->
                                         </div>
 
-                                        <div class = "col">
-                                            <div class="card-body">
+                                        <div class = "col division_card_upper">
+                                            <div class="card-body division_card_info_right">
                                                 <h4 class="small font-weight-bold">Temperature <span
                                                         class="float-right">20ºC</span>
                                                 </h4>
                                                 <div class="progress mb-4">
                                                     <div class="progress-bar bg-danger" role="progressbar" style="width: 20%"
-                                                         aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                                                         aria-valuenow="20" aria-valuemin="5" aria-valuemax="40"></div>
                                                 </div>
 
                                                 <h4 class="small font-weight-bold">Humidity <span
                                                         class="float-right">40%</span></h4>
                                                 <div class="progress mb-4">
-                                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 40%"
+                                                    <div class="progress-bar" role="progressbar" style="width: 40%"
                                                          aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
 
                                                 <h4 class="small font-weight-bold">Luminosity <span
                                                         class="float-right">60%</span></h4>
                                                 <div class="progress mb-4">
-                                                    <div class="progress-bar" role="progressbar" style="width: 60%"
+                                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 60%"
                                                          aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
-
+                                                <div class="d-flex flex-nowrap justify-content-between" style="width: 9em;">
+                                                    <i class="light  fas fa-lightbulb fa-3x"></i>
+                                                    <!--<label class="switch">
+                                                        <input type="checkbox">
+                                                        <span class="slider round"></span>
+                                                    </label>-->
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <div class="row" style="margin-left: 0;margin-right: 0">
                                         <div id="collapseKitchen" class="collapse collapse_division">
                                             <hr>
                                             <div class="row">
@@ -432,56 +468,55 @@
                     <br>
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Living Room</h1>
-                        <!-- Rounded switch -->
-                        <div class="d-flex flex-nowrap justify-content-between" style="width: 9em;">
-                            <h3>Lights</h3>
-                            <label class="switch">
-                                <input type="checkbox">
-                                <span class="slider round"></span>
-                            </label>
-                        </div>
+                        <h1 class="h3 mb-0 text-gray-800">Sala de Estar</h1>
+
                     </div>
                     <!-- Content Column -->
                     <div class="row">
                         <!-- Content Column -->
                         <div class="col-lg-12 mb-8">
                             <!-- Project Card Example -->
-                            <div class="card shadow " data-toggle="collapse" data-target="#collapseLivingRoom" aria-expanded="false" aria-controls="collapseOne">
-                                <div class="card-body">
+                            <div class="card shadow" style="background-image: url('/img/living_room.jpg');"  aria-expanded="false" aria-controls="collapseOne">
+                                <div class="card-body division_card_out">
                                     <div class="row division_row">
-                                        <div class="col" style="display:flex; justify-content: center">
-                                            <img class="division_img" th:src="@{/img/living_room.jpg}">
+                                        <div class="col" style="display:flex; justify-content: center" data-target="#collapseLivingRoom" data-toggle="collapse">
+                                            <!--<img data-target="#collapseKitchen" data-toggle="collapse" class="division_img" th:src="@{/img/kitchen.jpeg}">-->
                                         </div>
 
-                                        <div class = "col">
-                                            <div class="card-body">
+                                        <div class = "col division_card_upper">
+                                            <div class="card-body division_card_info_right">
                                                 <h4 class="small font-weight-bold">Temperature <span
                                                         class="float-right">20ºC</span>
                                                 </h4>
                                                 <div class="progress mb-4">
                                                     <div class="progress-bar bg-danger" role="progressbar" style="width: 20%"
-                                                         aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                                                         aria-valuenow="20" aria-valuemin="5" aria-valuemax="40"></div>
                                                 </div>
 
                                                 <h4 class="small font-weight-bold">Humidity <span
                                                         class="float-right">40%</span></h4>
                                                 <div class="progress mb-4">
-                                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 40%"
+                                                    <div class="progress-bar" role="progressbar" style="width: 40%"
                                                          aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
 
                                                 <h4 class="small font-weight-bold">Luminosity <span
                                                         class="float-right">60%</span></h4>
                                                 <div class="progress mb-4">
-                                                    <div class="progress-bar" role="progressbar" style="width: 60%"
+                                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 60%"
                                                          aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
-
+                                                <div class="d-flex flex-nowrap justify-content-between" style="width: 9em;">
+                                                    <i class="light  fas fa-lightbulb fa-3x"></i>
+                                                    <!--<label class="switch">
+                                                        <input type="checkbox">
+                                                        <span class="slider round"></span>
+                                                    </label>-->
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <div class="row" style="margin-left: 0;margin-right: 0">
                                         <div id="collapseLivingRoom" class="collapse collapse_division">
                                             <hr>
                                             <div class="row">
@@ -507,57 +542,56 @@
                     <br>
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Master Bedroom</h1>
-                        <<!-- Rounded switch -->
-                        <div class="d-flex flex-nowrap justify-content-between" style="width: 9em;">
-                            <h3>Lights</h3>
-                            <label class="switch">
-                                <input type="checkbox">
-                                <span class="slider round"></span>
-                            </label>
-                        </div>
+                        <h1 class="h3 mb-0 text-gray-800">Suite</h1>
+
                     </div>
                     <!-- Content Column -->
                     <div class="row">
                         <!-- Content Column -->
                         <div class="col-lg-12 mb-8">
                             <!-- Project Card Example -->
-                            <div class="card shadow " data-toggle="collapse" data-target="#collapseMasterBedroom" aria-expanded="false" aria-controls="collapseOne">
-                                <div class="card-body">
+                            <div class="card shadow" style="background-image: url('/img/master_bedroom.jpg');"  aria-expanded="false" aria-controls="collapseOne">
+                                <div class="card-body division_card_out">
                                     <div class="row division_row">
-                                        <div class="col" style="display:flex; justify-content: center">
-                                            <img class="division_img" th:src="@{/img/master_bedroom.jpg}">
+                                        <div class="col" style="display:flex; justify-content: center" data-target="#collapseMaster" data-toggle="collapse">
+                                            <!--<img data-target="#collapseKitchen" data-toggle="collapse" class="division_img" th:src="@{/img/kitchen.jpeg}">-->
                                         </div>
 
-                                        <div class = "col">
-                                            <div class="card-body">
+                                        <div class = "col division_card_upper">
+                                            <div class="card-body division_card_info_right">
                                                 <h4 class="small font-weight-bold">Temperature <span
                                                         class="float-right">20ºC</span>
                                                 </h4>
                                                 <div class="progress mb-4">
                                                     <div class="progress-bar bg-danger" role="progressbar" style="width: 20%"
-                                                         aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                                                         aria-valuenow="20" aria-valuemin="5" aria-valuemax="40"></div>
                                                 </div>
 
                                                 <h4 class="small font-weight-bold">Humidity <span
                                                         class="float-right">40%</span></h4>
                                                 <div class="progress mb-4">
-                                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 40%"
+                                                    <div class="progress-bar" role="progressbar" style="width: 40%"
                                                          aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
 
                                                 <h4 class="small font-weight-bold">Luminosity <span
                                                         class="float-right">60%</span></h4>
                                                 <div class="progress mb-4">
-                                                    <div class="progress-bar" role="progressbar" style="width: 60%"
+                                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 60%"
                                                          aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
-
+                                                <div class="d-flex flex-nowrap justify-content-between" style="width: 9em;">
+                                                    <i class="light  fas fa-lightbulb fa-3x"></i>
+                                                    <!--<label class="switch">
+                                                        <input type="checkbox">
+                                                        <span class="slider round"></span>
+                                                    </label>-->
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div id="collapseMasterBedroom" class="collapse collapse_division">
+                                    <div class="row" style="margin-left: 0;margin-right: 0">
+                                        <div id="collapseMaster" class="collapse collapse_division">
                                             <hr>
                                             <div class="row">
                                                 <div class="col-lg-4 mb-4 division_chart">
@@ -582,15 +616,7 @@
                     <br>
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Kids' Bedroom</h1>
-                        <!-- Rounded switch -->
-                        <div class="d-flex flex-nowrap justify-content-between" style="width: 9em;">
-                            <h3>Lights</h3>
-                            <label class="switch">
-                                <input type="checkbox">
-                                <span class="slider round"></span>
-                            </label>
-                        </div>
+                        <h1 class="h3 mb-0 text-gray-800">Quarto Crianças</h1>
 
                     </div>
                     <!-- Content Column -->
@@ -598,42 +624,48 @@
                         <!-- Content Column -->
                         <div class="col-lg-12 mb-8">
                             <!-- Project Card Example -->
-                            <div class="card shadow " data-toggle="collapse" data-target="#collapseKidsBedroom" aria-expanded="false" aria-controls="collapseOne">
-                                <div class="card-body">
+                            <div class="card shadow" style="background-image: url('/img/kids_room.jpg');"  aria-expanded="false" aria-controls="collapseOne">
+                                <div class="card-body division_card_out">
                                     <div class="row division_row">
-                                        <div class="col" style="display:flex; justify-content: center">
-                                            <img class="division_img" th:src="@{/img/kids_room.jpg}">
+                                        <div class="col" style="display:flex; justify-content: center" data-target="#collapseKids" data-toggle="collapse">
+                                            <!--<img data-target="#collapseKitchen" data-toggle="collapse" class="division_img" th:src="@{/img/kitchen.jpeg}">-->
                                         </div>
 
-                                        <div class = "col">
-                                            <div class="card-body">
+                                        <div class = "col division_card_upper">
+                                            <div class="card-body division_card_info_right">
                                                 <h4 class="small font-weight-bold">Temperature <span
                                                         class="float-right">20ºC</span>
                                                 </h4>
                                                 <div class="progress mb-4">
                                                     <div class="progress-bar bg-danger" role="progressbar" style="width: 20%"
-                                                         aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                                                         aria-valuenow="20" aria-valuemin="5" aria-valuemax="40"></div>
                                                 </div>
 
                                                 <h4 class="small font-weight-bold">Humidity <span
                                                         class="float-right">40%</span></h4>
                                                 <div class="progress mb-4">
-                                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 40%"
+                                                    <div class="progress-bar" role="progressbar" style="width: 40%"
                                                          aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
 
                                                 <h4 class="small font-weight-bold">Luminosity <span
                                                         class="float-right">60%</span></h4>
                                                 <div class="progress mb-4">
-                                                    <div class="progress-bar" role="progressbar" style="width: 60%"
+                                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 60%"
                                                          aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
-
+                                                <div class="d-flex flex-nowrap justify-content-between" style="width: 9em;">
+                                                    <i class="light  fas fa-lightbulb fa-3x"></i>
+                                                    <!--<label class="switch">
+                                                        <input type="checkbox">
+                                                        <span class="slider round"></span>
+                                                    </label>-->
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div id="collapseKidsBedroom" class="collapse collapse_division">
+                                    <div class="row" style="margin-left: 0;margin-right: 0">
+                                        <div id="collapseKids" class="collapse collapse_division">
                                             <hr>
                                             <div class="row">
                                                 <div class="col-lg-4 mb-4 division_chart">
@@ -655,18 +687,9 @@
                         </div>
                     </div>
 
-
-
-                    <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Casa do Dinis</h1>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
-                    </div>
-
-                    <!-- Content Row -->
+                    <!--
                     <div class="row">
-                        <!-- Earnings (Monthly) Card Example -->
+
                         <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-primary shadow h-100 py-2">
                                 <div class="card-body">
@@ -684,7 +707,7 @@
                             </div>
                         </div>
 
-                        <!-- Earnings (Monthly) Card Example -->
+
                         <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-success shadow h-100 py-2">
                                 <div class="card-body">
@@ -702,7 +725,6 @@
                             </div>
                         </div>
 
-                        <!-- Earnings (Monthly) Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-info shadow h-100 py-2">
                                 <div class="card-body">
@@ -711,16 +733,14 @@
                                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Luzes
                                             </div>
                                             <div class="row no-gutters align-items-center">
-                                                <!--
                                                 <div class="col-auto">
                                                     <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
                                                 </div>
-                                                -->
+
                                                 <a href="#" class="btn btn-info btn-circle btn-md">
                                                     <i class="fas fa-power-off"></i>
                                                 </a>
                                                 <h3 class="mb-0 font-weight-bold text-gray-800" style="padding-left: 10px">Off</h3>
-                                                <!--
                                                 <div class="col">
                                                     <div class="progress progress-sm mr-2">
                                                         <div class="progress-bar bg-info" role="progressbar"
@@ -728,7 +748,6 @@
                                                              aria-valuemax="100"></div>
                                                     </div>
                                                 </div>
-                                                -->
                                             </div>
                                         </div>
                                         <div class="col-auto">
@@ -739,7 +758,7 @@
                             </div>
                         </div>
 
-                        <!-- Pending Requests Card Example -->
+
                         <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-warning shadow h-100 py-2">
                                 <div class="card-body">
@@ -757,9 +776,10 @@
                             </div>
                         </div>
                     </div>
+                    -->
 
                     <!-- Content Row -->
-
+                    <br><br>
                     <div class="row">
 
                         <!-- Area Chart -->
@@ -794,193 +814,9 @@
 
                         <!-- Pie Chart -->
                         <div class="col-xl-2 col-lg-4">
-                            <div class="card bg-success text-white shadow">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-8">
-                                            Chama
-                                            <div class="text-white-50 small">Não detetada</div>
-                                        </div>
-                                        <div class="col-4">
-                                            <i class="fas fa-fire fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div style="margin-top: 10px" class="card bg-success text-white shadow">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-8">
-                                            Inundação
-                                            <div class="text-white-50 small">Não detetada</div>
-                                        </div>
-                                        <div class="col-4">
-                                            <i class="fas fa-tint fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-
-
-
-                    <!-- Content Row -->
-                    <div class="row">
-
-                        <!-- Content Column -->
-                        <div class="col-lg-6 mb-4">
-
-                            <!-- Project Card Example -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Projects</h6>
-                                </div>
-                                <div class="card-body">
-                                    <h4 class="small font-weight-bold">Server Migration <span
-                                            class="float-right">20%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 20%"
-                                             aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Sales Tracking <span
-                                            class="float-right">40%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 40%"
-                                             aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Customer Database <span
-                                            class="float-right">60%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar" role="progressbar" style="width: 60%"
-                                             aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Payout Details <span
-                                            class="float-right">80%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-info" role="progressbar" style="width: 80%"
-                                             aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Account Setup <span
-                                            class="float-right">Complete!</span></h4>
-                                    <div class="progress">
-                                        <div class="progress-bar bg-success" role="progressbar" style="width: 100%"
-                                             aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Color System -->
-                            <div class="row">
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-primary text-white shadow">
-                                        <div class="card-body">
-                                            Primary
-                                            <div class="text-white-50 small">#4e73df</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-success text-white shadow">
-                                        <div class="card-body">
-                                            Success
-                                            <div class="text-white-50 small">#1cc88a</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-info text-white shadow">
-                                        <div class="card-body">
-                                            Info
-                                            <div class="text-white-50 small">#36b9cc</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-warning text-white shadow">
-                                        <div class="card-body">
-                                            Warning
-                                            <div class="text-white-50 small">#f6c23e</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-danger text-white shadow">
-                                        <div class="card-body">
-                                            Danger
-                                            <div class="text-white-50 small">#e74a3b</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-secondary text-white shadow">
-                                        <div class="card-body">
-                                            Secondary
-                                            <div class="text-white-50 small">#858796</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-light text-black shadow">
-                                        <div class="card-body">
-                                            Light
-                                            <div class="text-black-50 small">#f8f9fc</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-dark text-white shadow">
-                                        <div class="card-body">
-                                            Dark
-                                            <div class="text-white-50 small">#5a5c69</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="col-lg-6 mb-4">
-
-                            <!-- Illustrations -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Illustrations</h6>
-                                </div>
-                                <div class="card-body">
-                                    <div class="text-center">
-                                        <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
-                                             src="img/undraw_posting_photo.svg" alt="">
-                                    </div>
-                                    <p>Add some quality, svg illustrations to your project courtesy of <a
-                                            target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a
-                                        constantly updated collection of beautiful svg images that you can use
-                                        completely free and without attribution!</p>
-                                    <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on
-                                        unDraw &rarr;</a>
-                                </div>
-                            </div>
-
-                            <!-- Approach -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Development Approach</h6>
-                                </div>
-                                <div class="card-body">
-                                    <p>SB Admin 2 makes extensive use of Bootstrap 4 utility classes in order to reduce
-                                        CSS bloat and poor page performance. Custom CSS classes are used to create
-                                        custom components and custom utility classes.</p>
-                                    <p class="mb-0">Before working with this theme, you should become familiar with the
-                                        Bootstrap framework, especially the utility classes.</p>
-                                </div>
-                            </div>
 
                         </div>
                     </div>
-
                 </div>
                 <!-- /.container-fluid -->
 
@@ -1073,6 +909,10 @@
                 .getElementById('chart_div'));
             chart.draw(data, options);
         }
+
+        $('.light').click(function() {
+            $(this).toggleClass('light-on');
+        });
     </script>
     </body>
 </html>
