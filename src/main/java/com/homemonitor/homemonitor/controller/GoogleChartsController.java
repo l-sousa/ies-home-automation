@@ -30,6 +30,6 @@ public class GoogleChartsController {
         graphData.put("15:31:10", 18);
         graphData.put("15:31:15", 18);
         model.addAttribute("chartData", graphData);
-        return "hello";
+        return "monitor";
     }
 }
