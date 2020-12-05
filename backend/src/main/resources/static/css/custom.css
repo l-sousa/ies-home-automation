@@ -1,0 +1,68 @@
+.side-card {
+    border-color: transparent!important;
+    margin: 10px!important;
+    border-radius: 0.35rem!important;
+}
+
+#signout {
+    background-color: transparent!important;
+    border: none!important;
+    padding: 0!important;
+    font-weight: 400!important;
+    color: #3a3b45!important;
+}
+
+.user_settings {
+    font-weight: 400!important;
+    color: #3a3b45!important;
+    margin: 0!important;
+}
+
+.collapse_division {
+    background-color: white;
+    border-radius: 0 0 0.35rem 0.35rem;
+}
+
+.light-on {
+    color: #f6c23e!important;
+}
+
+.light {
+    color: #ccc;
+    cursor: pointer;
+}
+
+.division_card_out {
+    padding: 0!important;
+}
+
+.no-margin-row {
+    margin-left: 0!important;
+    margin-right: 0!important;
+}
+
+.img-toggle-division {
+    display:flex!important;
+    justify-content: center!important;
+    cursor: pointer;
+}
+
+.division_card_upper {
+    padding: 0!important;
+    background-color: white!important;
+    border-radius: 0 0.35rem 0.35rem 0!important;
+}
+
+.division_card_info_right {
+    padding: 2.5rem!important;
+}
+
+.plant_row {
+    min-height: 300px;
+}
+
+.arrow-movement {
+    color: #4e73df;
+}
+
+
