@@ -53,4 +53,14 @@ public class Values {
     public void setTs(Timestamp ts) {
         this.ts = ts;
     }
+
+    @Override
+    public String toString() {
+        return "Values{" +
+                "valueId=" + valueId +
+                ", sensorId=" + sensorId +
+                ", value=" + value +
+                ", ts=" + ts +
+                '}';
+    }
 }
