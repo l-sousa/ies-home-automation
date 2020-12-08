@@ -27,4 +27,5 @@ bin/
 .classpath
 .project
 .settings/
-
+.idea/
+backend/.idea/**
