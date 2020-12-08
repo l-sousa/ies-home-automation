@@ -7,13 +7,12 @@ import java.sql.Timestamp;
 @Table(name = "vals")
 public class Values {
 
-    private Long valueId;
+    private @Id @GeneratedValue(strategy=GenerationType.IDENTITY) Long valueId;
     private int sensorId;
     private Float value;
     private Timestamp ts;
 
-    public Values(Long valueId, int sensorId, Float value, Timestamp ts) {
-        this.valueId = valueId;
+    public Values(int sensorId, Float value, Timestamp ts) {
         this.sensorId = sensorId;
         this.value = value;
         this.ts = ts;
@@ -21,8 +20,6 @@ public class Values {
 
     public Values(){}
 
-    @Id
-    @Column(name = "value_id")
     public Long getValueId() {
         return valueId;
     }
@@ -53,4 +50,9 @@ public class Values {
     public void setTs(Timestamp ts) {
         this.ts = ts;
     }
+
+	@Override
+	public String toString() {
+		return "Values [valueId=" + valueId + ", sensorId=" + sensorId + ", value=" + value + ", ts=" + ts + "]";
+	}
 }
