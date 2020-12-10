@@ -27,9 +27,16 @@ public class HomemonitorApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		final String topic = "sensor/Distancia";
-
-		messagingService.subscribe(topic);
+		
+		final String topicDistancia = "sensor/Distancia";
+		//final String topicHumidade = "sensor/Humidade";
+		//messagingService.reconnect();
+		final String msg = "hi";
+		messagingService.subscribe(topicDistancia);
+		
+		//messagingService.publish(topicDistancia, msg, 1, false);
+		//System.out.println("Published message");
+		//messagingService.subscribe(topicHumidade);
 	}
 
 }

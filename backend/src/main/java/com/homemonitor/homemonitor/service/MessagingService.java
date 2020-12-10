@@ -30,26 +30,12 @@ public class MessagingService {
 	@Autowired private SensorRepository sensorRepository;
 	@Autowired private ValuesRepository valuesRepository;
 
-	public void publish(final String topic, final String payload, int qos, boolean retained)
-			throws MqttPersistenceException, MqttException {
-		MqttMessage mqttMessage = new MqttMessage();
-		mqttMessage.setPayload(payload.getBytes());
-		mqttMessage.setQos(qos);
-		mqttMessage.setRetained(retained);
-
-		mqttClient.publish(topic, mqttMessage);
-		
-		//mqttClient.publish(topic, payload.getBytes(), qos, retained);
-
-		mqttClient.disconnect();
-	}
 
 	public void subscribe(final String topic) throws MqttException, InterruptedException {
-		System.out.println("Setting up the subscribing o fthe topic: "+topic);
+		System.out.println("Setting up the subscribing of the topic: "+topic);
 
 		mqttClient.subscribeWithResponse(topic, (tpic, msg) -> {
 			System.out.println("Sensor Data received");
-			Random generator = new Random();
 			try {
 				JSONObject jsonObject = new JSONObject(new String(msg.getPayload()));
 				int sensorId = jsonObject.getInt("sensor");
@@ -63,7 +49,7 @@ public class MessagingService {
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
-			//System.out.println(msg.getId() + " -> " + new String(msg.getPayload()));
+			System.out.println(msg.getId() + " -> " + new String(msg.getPayload()));
 		});
 	}
 
