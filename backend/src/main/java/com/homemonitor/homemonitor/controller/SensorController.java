@@ -62,7 +62,7 @@ public class SensorController {
     // Lists the Values of a certain Sensor in the last {numHours} hours
     @GetMapping("/values/{sensorId}/period/{numHours}")
     public List<Values> getSensorsByTypeByTs (@PathVariable int sensorId, @PathVariable int numHours) {
-        return valuesRepository.findAllBySensorIdAndTsGreaterThanOrderByTsDesc(sensorId,Timestamp.from(Instant.now().minusSeconds(numHours*60*60)));
+        return valuesRepository.findAllBySensorIdAndTsGreaterThanOrderByTsAsc(sensorId,Timestamp.from(Instant.now().minusSeconds(numHours*60*60)));
     }
 
 }
