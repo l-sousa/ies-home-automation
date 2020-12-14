@@ -35,7 +35,7 @@ public class MessagingService {
 		System.out.println("Setting up the subscribing of the topic: "+topic);
 
 		mqttClient.subscribeWithResponse(topic, (tpic, msg) -> {
-			System.out.println("Sensor Data received");
+			//System.out.println("Sensor Data received");
 			try {
 				JSONObject jsonObject = new JSONObject(new String(msg.getPayload()));
 				int sensorId = jsonObject.getInt("sensor");
