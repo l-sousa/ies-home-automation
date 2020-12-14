@@ -4,8 +4,6 @@ import CanvasJSReact from './canvasjs.react';
 
 var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
-var xVal = 1;
-var yVal = 15;
 var updateInterval = 5000;
 
 class App extends Component {
@@ -24,18 +22,17 @@ class App extends Component {
 
         var config = {
             method: 'get',
-            url: '/api/values/2/period/1'
+            url: '/api/values/2/period/12'
         };
 
         axios(config)
             .then(response => {
                 const data_array = [];
-                response.data.forEach(item => data_array.push({ x: Date.parse(item.ts), y: item.value }));
-                return data_array;
+                response.data.forEach(item => data_array.push({ x: new Date(Date.parse(item.ts)), y: item.value, markerColor: "#f6c23e" }));
+                return data_array.reverse();
             })
             .then(data => {
                 this.setState({ chartData: data });
-                //console.log(data);
             })
             .catch(function (error) {
                 console.log(error);
@@ -54,33 +51,67 @@ class App extends Component {
         axios(config)
             .then(response => {
                 const data_arrayy = [];
-                response.data.forEach(item => data_arrayy.push({ x: Date.parse(item.ts), y: item.value }));
+                response.data.forEach(item => data_arrayy.push({ x: new Date(Date.parse(item.ts)), y: item.value, markerColor: "#f6c23e" }));
                 console.log(data_arrayy);
                 return data_arrayy;
             })
             .then(data => {
                 this.setState({ last: data[0] });
-                //console.log(data);
+            })
+            .then(data => {
+                console.log("Last");
+                console.log(this.state.last);
+                var joined = this.state.chartData;
+                joined.push(this.state.last);
+                if (joined.length > 43200) {
+                    joined.shift();
+                }
+                
+                console.log(joined);
+                this.setState({ chartData: joined });
+                this.render();
             })
             .catch(function (error) {
                 console.log(error);
             });
-        console.log(this.state.last);
-        var joined = this.state.chartData;
-        joined.push(this.state.last);
-        joined.shift();
-        console.log(joined);
-        this.setState({ chartData: joined });
-        this.render();
     }
 
     render() {
         const options = {
+            zoomEnabled: true,
             title: {
-                text: "Dynamic Line Chart"
+                text: "Luminosidade nas últimas 12h",
+                fontFamily: "Nunito",
+                fontColor: "#5a5c69",
+                fontSize: 25,
+                horizontalAlign: "left"
+            },
+            axisX:{
+                title: "Hora",
+                intervalType: "hour",        
+                valueFormatString: "HH:mm:ss", 
+                titleFontColor: "#5a5c69",
+                labelFontColor: "#5a5c69",
+                labelFontFamily: "Nunito",
+                titleFontFamily: "Nunito",
+                gridColor: "#5a5c69",
+                lineColor: "#5a5c69"
+            },
+            axisY:{
+                title: "% de luminosidade",
+                gridThickness: 0.5,
+                titleFontColor: "#5a5c69",
+                labelFontColor: "#5a5c69",
+                labelFontFamily: "Nunito",
+                titleFontFamily: "Nunito",
+                gridColor: "#5a5c69"
+            },
+            toolTip:{   
+                content: "{x}: {y}"      
             },
             data: [{
-                type: "line",
+                type: "spline",
+                lineColor: "#f6c23e",
                 dataPoints: this.state.chartData
             }]
         }
