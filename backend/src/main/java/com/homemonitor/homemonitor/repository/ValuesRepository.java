@@ -14,5 +14,5 @@ public interface ValuesRepository extends JpaRepository<Values, Long> {
     Optional<Values> findByValueId(Long valueId);
     List<Values> findBySensorId(int sensorId);
     List<Values> findAllBySensorIdOrderByTsDesc(int sensorId, Pageable pageable);
-    List<Values> findAllBySensorIdAndTsGreaterThanOrderByTsDesc(int sensorId, Timestamp ts);
+    List<Values> findAllBySensorIdAndTsGreaterThanOrderByTsAsc(int sensorId, Timestamp ts);
 }
