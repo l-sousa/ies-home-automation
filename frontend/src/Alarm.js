@@ -1,12 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import useSound from 'use-sound';
-import fireAlarm from './sounds/alarm_fire.mp3';
-import waterAlarm from './sounds/alarm_water.mp3';
 var updateInterval = 5000;
-
-const audioFire = new Audio('./sounds/alarm_fire.mp3');
-
 
 class Alarm extends Component {
 
@@ -17,7 +11,6 @@ class Alarm extends Component {
     }
 
     componentDidMount() {
-        audioFire.play();
         setInterval(this.updateValues, updateInterval);
     }
 
@@ -37,12 +30,10 @@ class Alarm extends Component {
                 if (this.state.last == 1) {
                     this.setState({ color: "bg-danger" });
                     this.setState({ detection : "Detetada!" });
-                    audioFire.play();
                 }
                 if (this.state.last == 0) {
                     this.setState({ color: "bg-success" });
                     this.setState({ detection : "Não detetada" });
-                    audioFire.play();
                 }
                 this.render();
             })
