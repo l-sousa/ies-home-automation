@@ -24,45 +24,45 @@ public class SensorController {
     private ValuesRepository valuesRepository;
 
     // Lists All Sensors
-    @GetMapping("/sensors")
-    public List<Sensor> getAllSensors() {
-        return sensorRepository.findAll();
+    @GetMapping("user/{userId}/sensors")
+    public List<Sensor> getAllSensorsByUserId(@PathVariable int userId) {
+        return sensorRepository.findAllByUserId(userId);
     }
 
     // Lists All Sensors of a certain Type (Temperature p.e.)
-    @GetMapping("/sensors/type/{type}")
-    public List<Sensor> getSensorsByType (@PathVariable String type) {
-        return sensorRepository.findByType(type);
+    @GetMapping("user/{userId}/sensors/type/{type}")
+    public List<Sensor> getAllSensorsByUserIdAndType (@PathVariable int userId, @PathVariable String type) {
+        return sensorRepository.findAllByUserIdAndType(userId, type);
     }
 
     // Lists All Sensors of a certain Room of the house (Kitchen p.e.)
-    @GetMapping("/sensors/room/{room}")
-    public List<Sensor> getSensorsByRoom (@PathVariable String room) {
-        return sensorRepository.findByRoom(room);
+    @GetMapping("user/{userId}/sensors/room/{room}")
+    public List<Sensor> getAllSensorsByUserIdAndRoom (@PathVariable int userId, @PathVariable String room) {
+        return sensorRepository.findAllByUserIdAndRoom(userId, room);
     }
 
     // Lists All Sensors Values
-    @GetMapping("/values")
-    public List<Values> getAllValues() {
-        return valuesRepository.findAll();
+    @GetMapping("user/{userId}/values")
+    public List<Values> getAllValuesByUserId(@PathVariable int userId) {
+        return valuesRepository.findAllByUserId(userId);
     }
 
     // Lists all the Values of a certain Sensor
-    @GetMapping("/values/{sensorId}")
-    public List<Values> getSensorsByType (@PathVariable int sensorId) {
-        return valuesRepository.findBySensorId(sensorId);
+    @GetMapping("user/{userId}/values/{sensorId}")
+    public List<Values> getAllValuesByUserIdAndSensorId (@PathVariable int userId, @PathVariable int sensorId) {
+        return valuesRepository.findAllByUserIdAndSensorId(userId, sensorId);
     }
 
     // Lists the last {num} Values of a certain Sensor
-    @GetMapping("/values/{sensorId}/last/{num}")
-    public List<Values> getSensorsByType (@PathVariable int sensorId, @PathVariable int num) {
-        return valuesRepository.findAllBySensorIdOrderByTsDesc(sensorId, PageRequest.of(0, num));
+    @GetMapping("user/{userId}/values/{sensorId}/last/{num}")
+    public List<Values> getAllValuesByUserIdAndSensorIdOrderByTsDesc (@PathVariable int userId, @PathVariable int sensorId, @PathVariable int num) {
+        return valuesRepository.findAllByUserIdAndSensorIdOrderByTsDesc(userId, sensorId, PageRequest.of(0, num));
     }
 
     // Lists the Values of a certain Sensor in the last {numHours} hours
-    @GetMapping("/values/{sensorId}/period/{numHours}")
-    public List<Values> getSensorsByTypeByTs (@PathVariable int sensorId, @PathVariable int numHours) {
-        return valuesRepository.findAllBySensorIdAndTsGreaterThanOrderByTsAsc(sensorId,Timestamp.from(Instant.now().minusSeconds(numHours*60*60)));
+    @GetMapping("user/{userId}/values/{sensorId}/period/{numHours}")
+    public List<Values> getAllValuesByUserIdAndSensorIdAndTsGreaterThanOrderByTsAsc (@PathVariable int userId, @PathVariable int sensorId, @PathVariable int numHours) {
+        return valuesRepository.findAllByUserIdAndSensorIdAndTsGreaterThanOrderByTsAsc(userId,sensorId,Timestamp.from(Instant.now().minusSeconds(numHours*60*60)));
     }
 
 }
