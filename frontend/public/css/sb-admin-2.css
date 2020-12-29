@@ -6589,7 +6589,7 @@ a.close.disabled {
 .carousel-control-prev,
 .carousel-control-next {
     position: absolute;
-    top: 0;
+    top: 90%;
     bottom: 0;
     z-index: 1;
     display: flex;
@@ -6598,8 +6598,9 @@ a.close.disabled {
     width: 15%;
     color: #fff;
     text-align: center;
-    opacity: 0.5;
+    opacity: 1;
     transition: opacity 0.15s ease;
+    background-color: white;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -6632,7 +6633,11 @@ a.close.disabled {
     display: inline-block;
     width: 20px;
     height: 20px;
-    background: no-repeat 50% / 100% 100%;
+    background: no-repeat 50% / 50% 50%;
+    top: 20px;
+    background-color: #4e73df;
+    border-radius: 40px;
+    padding: 20px;
 }
 
 .carousel-control-prev-icon {

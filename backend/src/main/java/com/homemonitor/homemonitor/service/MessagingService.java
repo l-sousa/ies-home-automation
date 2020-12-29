@@ -3,10 +3,12 @@ package com.homemonitor.homemonitor.service;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Optional;
 import java.util.Random;
 
 import javax.annotation.PostConstruct;
 
+import com.homemonitor.homemonitor.model.Sensor;
 import org.eclipse.paho.client.mqttv3.IMqttClient;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
@@ -38,13 +40,21 @@ public class MessagingService {
 			//System.out.println("Sensor Data received");
 			try {
 				JSONObject jsonObject = new JSONObject(new String(msg.getPayload()));
-				int sensorId = jsonObject.getInt("sensor");
+				int user_id = jsonObject.getInt("user_id");
+				String room = jsonObject.getString("room");
+				String type = jsonObject.getString("type");
+				int sensor_id = jsonObject.getInt("sensor_id");
 				float value = jsonObject.getFloat("value");
-				String timStamp= jsonObject.getString("timeStamp");
+				String timeStamp = jsonObject.getString("timeStamp");
 				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-				Date parsedDate = dateFormat.parse(timStamp);
+				Date parsedDate = dateFormat.parse(timeStamp);
 				Timestamp timestamp = new java.sql.Timestamp(parsedDate.getTime());
-				Values v = new Values((int)sensorId,(float)value,timestamp);
+				Optional<Sensor> exists = sensorRepository.findByUserIdAndId(sensor_id,user_id);
+				if (exists.isEmpty()) {
+					Sensor s = new Sensor(sensor_id, user_id, type, room);
+					sensorRepository.save(s);
+				}
+				Values v = new Values((int)user_id, (String)room, (int)sensor_id, (float)value, timestamp);
 				valuesRepository.save(v);
 			}catch(Exception e) {
 				e.printStackTrace();
