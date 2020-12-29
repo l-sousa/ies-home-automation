@@ -22,7 +22,6 @@ public class MqttConfiguration {
 	@Bean
 	public IMqttClient mqttClient(@Value("${mqtt.clientId}") String clientId,
 			@Value("${mqtt.hostname}") String hostname, @Value("${mqtt.port}") int port) throws MqttException {
-		MemoryPersistence percistance = new MemoryPersistence();
 		IMqttClient mqttClient = new MqttClient("tcp://" + hostname + ":" + port, clientId);
 		mqttClient.connect(mqttConnectOptions());
 		return mqttClient;
