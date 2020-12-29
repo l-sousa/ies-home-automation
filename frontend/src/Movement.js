@@ -23,7 +23,7 @@ class Movement extends Component {
 
         var config = {
             method: 'get',
-            url: '/api/values/1/last/4'
+            url: '/api/user/2/values/' + this.props.sensorId + '/last/' + this.props.numValues
         };
 
         axios(config)
@@ -33,7 +33,6 @@ class Movement extends Component {
                 return data_array;
             })
             .then(data => {
-                console.log(data);
                 this.setState({ movementData: data });
             })
             .catch(function (error) {
