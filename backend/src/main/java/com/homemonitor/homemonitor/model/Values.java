@@ -8,11 +8,15 @@ import java.sql.Timestamp;
 public class Values {
 
     private @Id @GeneratedValue(strategy=GenerationType.IDENTITY) Long valueId;
+    private int userId;
     private int sensorId;
+    private String room;
     private Float value;
     private Timestamp ts;
 
-    public Values(int sensorId, Float value, Timestamp ts) {
+    public Values(int userId, String room, int sensorId, Float value, Timestamp ts) {
+        this.userId=userId;
+        this.room=room;
         this.sensorId = sensorId;
         this.value = value;
         this.ts = ts;
@@ -27,12 +31,28 @@ public class Values {
         this.valueId = value_id;
     }
 
-    @Column(name = "sensor_id")
+    @Column(name = "userId")
+    public int getUserId() {
+        return userId;
+    }
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    @Column(name = "room")
+    public String getRoom() {
+        return room;
+    }
+    public void setRoom(String room) {
+        this.room = room;
+    }
+
+    @Column(name = "sensorId")
     public int getSensorId() {
         return sensorId;
     }
-    public void setSensorId(int sensor_id) {
-        this.sensorId = sensor_id;
+    public void setSensorId(int sensorId) {
+        this.sensorId = sensorId;
     }
 
     @Column(name = "value")
@@ -51,8 +71,15 @@ public class Values {
         this.ts = ts;
     }
 
-	@Override
-	public String toString() {
-		return "Values [valueId=" + valueId + ", sensorId=" + sensorId + ", value=" + value + ", ts=" + ts + "]";
-	}
+    @Override
+    public String toString() {
+        return "Values{" +
+                "valueId=" + valueId +
+                ", userId=" + userId +
+                ", sensorId=" + sensorId +
+                ", room='" + room + '\'' +
+                ", value=" + value +
+                ", ts=" + ts +
+                '}';
+    }
 }

@@ -11,11 +11,13 @@ import javax.persistence.Table;
 public class Sensor {
 
     private int id;
+    private int userId;
     private String type;
     private String room;
 
-    public Sensor(int id, String type, String room) {
+    public Sensor(int id, int userId, String type, String room) {
         this.id = id;
+        this.userId = userId;
         this.type = type;
         this.room = room;
     }
@@ -29,6 +31,14 @@ public class Sensor {
     }
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Column(name = "userId")
+    public int getUserId() {
+        return userId;
+    }
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     @Column(name = "type", nullable = false)
@@ -51,6 +61,7 @@ public class Sensor {
     public String toString() {
         return "Sensor{" +
                 "id=" + id +
+                ", userId=" + userId +
                 ", type='" + type + '\'' +
                 ", room='" + room + '\'' +
                 '}';
