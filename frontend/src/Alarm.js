@@ -27,11 +27,11 @@ class Alarm extends Component {
       })
       .then((data) => {
         if (this.state.last == 1) {
-          this.setState({ color: "bg-danger" });
+          this.setState({ color: "flame_div" });
           this.setState({ detection: "Detetada!" });
         }
         if (this.state.last == 0) {
-          this.setState({ color: "flame_div" });
+          this.setState({ color: "bg-success" });
           this.setState({ detection: "Não detetada" });
         }
         this.render();
@@ -41,8 +41,19 @@ class Alarm extends Component {
       });
   }
 
+  Notification() {}
+
   render() {
     var e_class = "card text-white shadow side-card " + this.state.color;
+    var js;
+
+    if (this.state.last == 1) {
+      js = <script type="text/javascript" src="./notification.js"></script>;
+    }
+    if (this.state.last == 0) {
+      js = <p></p>;
+    }
+
     return (
       <div>
         <div style={{ marginTop: 10 + "px" }} class={e_class}>
@@ -56,6 +67,7 @@ class Alarm extends Component {
                 <i class="fas fa-tint fa-2x text-gray-300"></i>
               </div>
             </div>
+            {js}
           </div>
         </div>
       </div>
