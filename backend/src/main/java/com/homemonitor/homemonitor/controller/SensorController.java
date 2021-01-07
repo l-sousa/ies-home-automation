@@ -1,17 +1,26 @@
 package com.homemonitor.homemonitor.controller;
 
 import java.sql.Timestamp;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.math.BigInteger;
 import java.time.Instant;
 import java.util.*;
 import com.homemonitor.homemonitor.model.Sensor;
 import com.homemonitor.homemonitor.model.Values;
 import com.homemonitor.homemonitor.repository.SensorRepository;
 import com.homemonitor.homemonitor.repository.ValuesRepository;
+import com.homemonitor.homemonitor.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -22,7 +31,27 @@ public class SensorController {
     private SensorRepository sensorRepository;
     @Autowired
     private ValuesRepository valuesRepository;
-
+    @Autowired
+    private UserRepository userRepository;
+    
+    //Get token
+    @PostMapping("login")
+    public ResponseEntity<String> getToken(@RequestParam("Name") String nome,@RequestParam("Password") String password) throws NoSuchAlgorithmException {
+    	MessageDigest m = MessageDigest.getInstance("MD5");
+    	m.reset();
+    	String concat = nome+password;
+    	m.update(concat.getBytes());
+    	byte[] digest = m.digest();
+    	BigInteger number = new BigInteger(1,digest);
+    	String token = number.toString(16);
+    	System.out.println(token);
+        if (userRepository.findAllByToken(token).isEmpty()){
+        	return new ResponseEntity<String>("",HttpStatus.LOCKED); 
+        }else {
+        	return new ResponseEntity<String>(token,HttpStatus.OK);
+        }
+    }
+    
     // Lists All Sensors
     @GetMapping("user/{userId}/sensors")
     public List<Sensor> getAllSensorsByUserId(@PathVariable int userId) {
