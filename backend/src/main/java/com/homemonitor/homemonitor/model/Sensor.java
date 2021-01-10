@@ -11,11 +11,11 @@ import javax.persistence.Table;
 public class Sensor {
 
     private int id;
-    private int userId;
+    private String userId;
     private String type;
     private String room;
 
-    public Sensor(int id, int userId, String type, String room) {
+    public Sensor(int id, String userId, String type, String room) {
         this.id = id;
         this.userId = userId;
         this.type = type;
@@ -34,10 +34,10 @@ public class Sensor {
     }
 
     @Column(name = "userId")
-    public int getUserId() {
+    public String getUserId() {
         return userId;
     }
-    public void setUserId(int userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 

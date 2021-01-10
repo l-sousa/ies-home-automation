@@ -13,10 +13,10 @@ import java.util.Optional;
 public interface ValuesRepository extends JpaRepository<Values, Long> {
     Optional<Values> findByValueId(Long valueId);
     List<Values> findAllBySensorId(int sensorId);
-    List<Values> findAllByUserId(int userid);
-    List<Values> findAllByUserIdAndSensorId(int userId, int sensorId);
+    List<Values> findAllByUserId(String userid);
+    List<Values> findAllByUserIdAndSensorId(String userId, int sensorId);
     List<Values> findAllBySensorIdOrderByTsDesc(int sensorId, Pageable pageable);
-    List<Values> findAllByUserIdAndSensorIdOrderByTsDesc(int userId, int sensorId, Pageable pageable);
+    List<Values> findAllByUserIdAndSensorIdOrderByTsDesc(String userId, int sensorId, Pageable pageable);
     List<Values> findAllBySensorIdAndTsGreaterThanOrderByTsAsc(int sensorId, Timestamp ts);
-    List<Values> findAllByUserIdAndSensorIdAndTsGreaterThanOrderByTsAsc(int userId, int sensorId, Timestamp ts);
+    List<Values> findAllByUserIdAndSensorIdAndTsGreaterThanOrderByTsAsc(String userId, int sensorId, Timestamp ts);
 }
