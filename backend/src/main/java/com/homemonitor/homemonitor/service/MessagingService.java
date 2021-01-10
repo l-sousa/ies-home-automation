@@ -40,7 +40,7 @@ public class MessagingService {
 			//System.out.println("Sensor Data received");
 			try {
 				JSONObject jsonObject = new JSONObject(new String(msg.getPayload()));
-				int user_id = jsonObject.getInt("user_id");
+				String user_id = jsonObject.getString("user_id");
 				String room = jsonObject.getString("room");
 				String type = jsonObject.getString("type");
 				int sensor_id = jsonObject.getInt("sensor_id");
@@ -49,12 +49,12 @@ public class MessagingService {
 				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 				Date parsedDate = dateFormat.parse(timeStamp);
 				Timestamp timestamp = new java.sql.Timestamp(parsedDate.getTime());
-				Optional<Sensor> exists = sensorRepository.findByUserIdAndId(sensor_id,user_id);
+				Optional<Sensor> exists = sensorRepository.findByUserIdAndId(user_id,sensor_id);
 				if (exists.isEmpty()) {
 					Sensor s = new Sensor(sensor_id, user_id, type, room);
 					sensorRepository.save(s);
 				}
-				Values v = new Values((int)user_id, (String)room, (int)sensor_id, (float)value, timestamp);
+				Values v = new Values((String)user_id, (String)room, (int)sensor_id, (float)value, timestamp);
 				valuesRepository.save(v);
 			}catch(Exception e) {
 				e.printStackTrace();

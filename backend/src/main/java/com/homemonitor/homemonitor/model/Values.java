@@ -8,13 +8,13 @@ import java.sql.Timestamp;
 public class Values {
 
     private @Id @GeneratedValue(strategy=GenerationType.IDENTITY) Long valueId;
-    private int userId;
+    private String userId;
     private int sensorId;
     private String room;
     private Float value;
     private Timestamp ts;
 
-    public Values(int userId, String room, int sensorId, Float value, Timestamp ts) {
+    public Values(String userId, String room, int sensorId, Float value, Timestamp ts) {
         this.userId=userId;
         this.room=room;
         this.sensorId = sensorId;
@@ -32,10 +32,10 @@ public class Values {
     }
 
     @Column(name = "userId")
-    public int getUserId() {
+    public String getUserId() {
         return userId;
     }
-    public void setUserId(int userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
