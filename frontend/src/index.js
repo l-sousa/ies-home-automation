@@ -5,6 +5,54 @@ import App from './App';
 import CardInfo from './CardInfo';
 import Alarm from './Alarm';
 import Movement from './Movement';
+import 'parsleyjs';
+import $ from 'jquery';
+window.jQuery = window.$ = $;
+
+function setCookie(sKey, sValue) {
+  if (!sKey || /^(?:expires|max\-age|path|domain|secure)$/i.test(sKey)) {
+      return false;
+  }
+  document.cookie =
+      encodeURIComponent(sKey) +
+      "=" +
+      encodeURIComponent(sValue)
+  return true;
+}
+
+$(window).on('load', function() {
+  'use strict';
+  // form validaton
+  $("#login-form")
+      .parsley()
+      .on("form:submit", function () {
+          return login();
+      });
+
+}); 
+
+function login() {
+    let data = $("#login-form").serialize();
+    console.log("DATA");
+    console.log(data);
+    $.ajax({
+        type: "POST",
+        url: "rest_api.login",
+        data: data,
+    })
+        .done(function (response) {
+            const user_type = response.data.user_type;
+            
+            setCookie("access_token", response.token);
+            setCookie("email", response.data.user.email);
+        })
+        .fail(function () {
+            $("#error-message").html("<strong>Credenciais Inválidas!</strong>");
+        });
+
+    return false;
+}
+
 
 // ALARMES
 
