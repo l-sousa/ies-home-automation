@@ -47,15 +47,18 @@
                                     <div th:if="${param.error}" class="text-center">
                                     	<h1 th:if="${param.error}" class="h4 text-gray-900 mb-4">Invalid username and password.</h1>
         							</div>
-                                    <form class="user" th:action="@{/login}" method="post">
+                                    <form id="login-form" action="#" method="POST">
                                         <div class="form-group">
-                                            <input type="text" class="form-control form-control-user"
-                                                id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Enter Email Address..." name="username">
+                                            <input type="text" class="form-control" id="email" name="email"
+                                        placeholder="Introduz o teu email"
+                                        data-parsley-trigger="change" data-parsley-required-message="Campo obrigatório!"
+                                        required>
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="Password" name="password">
+                                            <input type="password" class="form-control" id="password" name="password"
+                                        placeholder="Introduz a tua palavra-passe"
+                                        data-parsley-trigger="change" data-parsley-required-message="Campo obrigatório!"
+                                        required>
                                         </div>
                                         <div><input class="btn btn-primary btn-user btn-block" type="submit" value="Sign In"/></div>
                                     </form>
