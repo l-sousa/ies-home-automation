@@ -21,8 +21,8 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Build Spring 
-        run: cd backend/ \
-          docker build -t spring-backend:dev .
+        working-directory: ./backend
+        run: docker build -t spring-backend:dev .
       
       - uses: actions/checkout@v1
       - name: Build the docker-compose stack
