@@ -13,6 +13,28 @@ on:
 
 
 
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+
+
+
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -30,17 +52,19 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: ${{ matrix.java }}
+      steps:
+      
       
       - uses: actions/checkout@v1
       - name: MVN Build Spring
         working-directory: ./backend
         run: mvn package -Dmaven.test.skip=true+
       
-      - uses: actions/checkout@v1
-      - name: Build Docker Spring
+      - uses: actions/checkout@v2
+      - name:  MVN Build Spring
         working-directory: ./backend
-        run: docker build -t spring-backend:dev .
-      
+        run: docker build . --file Dockerfile --tag spring-backend:$(date +%s)
+        
       - uses: actions/checkout@v1
       - name: Build the docker-compose stack
         run: docker-compose up -d
