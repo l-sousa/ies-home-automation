@@ -1,6 +1,8 @@
 substitutions:
   _DOCKER_COMPOSE_VERSION: 1.25.5
 steps:
+
+run: "cd /"
 - name: 'gcr.io/cloud-builders/docker'
   args:
   - 'build'
