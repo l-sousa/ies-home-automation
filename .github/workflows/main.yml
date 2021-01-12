@@ -20,7 +20,12 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - uses: actions/checkout@v1
-      - name: Build Spring 
+      - name: MVN Clean Install
+        working-directory: ./backend
+        run: mvn clean install
+      
+      - uses: actions/checkout@v1
+      - name: Build Spring
         working-directory: ./backend
         run: docker build -t spring-backend:dev .
       
