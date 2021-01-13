@@ -52,7 +52,7 @@ jobs:
         
       - name:  Docker Build Spring
         working-directory: ./backend
-        run: pwd; ls; docker build . --file Dockerfile --tag spring-backend:dev;
+        run: pwd; ls; ls target/ docker build . --file Dockerfile --tag spring-backend:dev;
             
       - name: Build the docker-compose stack
         working-directory: ./Docker
