@@ -44,7 +44,7 @@ jobs:
         working-directory: ./frontend
         run: docker build . --file Dockerfile --tag frontend:dev;
         
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v1
       
       - name: Maven Package Build
         working-directory: ./backend
