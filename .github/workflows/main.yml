@@ -52,7 +52,7 @@ jobs:
         
       - name:  Docker Build Spring
         working-directory: ./backend
-        run: mvn package -Dmaven.test.skip=true && docker build . --file Dockerfile --tag spring-backend:dev;
+        run: mvn package -Dmaven.test.skip=true && docker build . --file Dockerfile --tag spring-backend:dev && ls target/;
             
       - name: Build the docker-compose stack
         working-directory: ./Docker
