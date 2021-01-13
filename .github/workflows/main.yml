@@ -46,13 +46,13 @@ jobs:
         
       - uses: actions/checkout@v1
       
-      - name: Maven Package Build
-        working-directory: ./backend
-        run: mvn package -Dmaven.test.skip=true
+      # - name: Maven Package Build
+      #   working-directory: ./backend
+      #   run: mvn package -Dmaven.test.skip=true
         
       - name:  Docker Build Spring
         working-directory: ./backend
-        run: pwd; ls; ls target/; docker build . --file Dockerfile --tag spring-backend:dev;
+        run: mvn package -Dmaven.test.skip=true && docker build . --file Dockerfile --tag spring-backend:dev;
             
       - name: Build the docker-compose stack
         working-directory: ./Docker
