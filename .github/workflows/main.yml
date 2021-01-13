@@ -37,7 +37,7 @@ jobs:
         run: npm install;
           npm install dateformat;
           npm install react-scripts@3.4.1 -g;
-          docker build -t frontend:dev .;
+          docker build . --file Dockerfile --tag frontend:dev;
       
       - uses: actions/checkout@v2
         
