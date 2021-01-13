@@ -32,13 +32,22 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '12'
+    
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          
+
       - name: npm install & Build node image docker
         working-directory: ./frontend
         run: npm install;
           npm install dateformat;
           npm install react-scripts@3.4.1 -g;
           docker build . --file Dockerfile --tag frontend:dev;
-      
+          
+
       - uses: actions/checkout@v2
         
       - name:  Docker Build Spring
