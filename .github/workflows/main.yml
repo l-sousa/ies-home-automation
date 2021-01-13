@@ -29,6 +29,9 @@ jobs:
         with:
           java-version: ${{ matrix.java }}
       
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '12'
       - name: npm install
         working-directory: ./frontend
         run: npm install;
