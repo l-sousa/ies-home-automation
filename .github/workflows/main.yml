@@ -30,7 +30,7 @@ jobs:
           java-version: ${{ matrix.java }}
        
       - name: Docker Build Node
-        working-directory: ./backend
+        working-directory: ./frontend
         run: docker build -t frontend:dev .
 
       - name:  Docker Build Spring
