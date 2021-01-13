@@ -29,9 +29,9 @@ jobs:
         with:
           java-version: ${{ matrix.java }}
        
-      - name: MVN Build Spring
+      - name: Docker Build Node
         working-directory: ./backend
-        run: mvn package -Dmaven.test.skip=true
+        run: docker build -t frontend:dev .
 
       - name:  Docker Build Spring
         working-directory: ./backend
