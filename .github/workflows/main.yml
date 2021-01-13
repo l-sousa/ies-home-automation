@@ -28,7 +28,7 @@ jobs:
         with:
           java-version: ${{ matrix.java }}
        
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - name: MVN Build Spring
         working-directory: ./backend
         run: mvn package -Dmaven.test.skip=true
