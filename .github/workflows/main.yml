@@ -34,9 +34,9 @@ jobs:
         run: mvn package -Dmaven.test.skip=true
       
       - uses: actions/checkout@v2
-      - name:  MVN Build Spring
+      - name:  Docker Build Spring
         working-directory: ./backend
-        run: docker build . --file Dockerfile --tag spring-backend:$(date +%s)
+        run: docker build -t spring-backend:dev .
         
       - uses: actions/checkout@v1
       - name: Build the docker-compose stack
