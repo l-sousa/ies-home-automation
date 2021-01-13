@@ -40,9 +40,9 @@ jobs:
          # password: ${{ secrets.DOCKER_PASSWORD }}
           
 
-      - name: Build node image docker
-        working-directory: ./frontend
-        run: docker build . --file Dockerfile --tag frontend:dev;
+      #- name: Build node image docker
+        #working-directory: ./frontend
+        #run: docker build . --file Dockerfile --tag frontend:dev;
         
       - uses: actions/checkout@v1
       
@@ -52,7 +52,7 @@ jobs:
         
       - name:  Docker Build Spring
         working-directory: ./backend
-        run: docker build . --file Dockerfile --tag spring-backend:dev;
+        run: pwd; ls; docker build . --file Dockerfile --tag spring-backend:dev;
             
       - name: Build the docker-compose stack
         working-directory: ./Docker
