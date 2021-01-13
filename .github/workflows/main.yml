@@ -37,7 +37,9 @@ jobs:
         run: npm install;
           npm install dateformat;
           npm install react-scripts@3.4.1 -g;
-            
+      
+      - uses: actions/checkout@v2
+
       - name: Docker Build Node
         working-directory: ./frontend
         run: docker build -t frontend:dev .
