@@ -28,7 +28,13 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: ${{ matrix.java }}
-       
+      
+      - name: npm install
+        working-directory: ./frontend
+        run: npm install \
+          npm install dateformat \
+          npm install react-scripts@3.4.1 -g
+            
       - name: Docker Build Node
         working-directory: ./frontend
         run: docker build -t frontend:dev .
