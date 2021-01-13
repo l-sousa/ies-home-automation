@@ -40,12 +40,9 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
           
 
-      - name: npm install & Build node image docker
+      - name: Build node image docker
         working-directory: ./frontend
-        run: npm install;
-          npm install dateformat;
-          npm install react-scripts@3.4.1 -g;
-          docker build . --file Dockerfile --tag frontend:dev;
+        run: docker build . --file Dockerfile --tag frontend:dev;
           
 
       - uses: actions/checkout@v2
