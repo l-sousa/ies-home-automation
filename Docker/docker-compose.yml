@@ -8,12 +8,13 @@ services:
     ports: 
       - 3306:3306
     volumes:
-      - /var/lib/docker/volumes/mysql-volume/_data:/var/lib/mysql
+      - ./mysql-volume/_data:/var/lib/mysql
         
   
   spring:
     container_name: spring
-    image: spring-backend:dev
+    build: ../backend
+    #image: spring-backend:dev
     restart: on-failure
     depends_on:
       - db
@@ -22,12 +23,13 @@ services:
 
   node:
     container_name: node
-    image: node-frontend:dev
+    build: ../frontend
+    #image: node-frontend:dev
     restart: unless-stopped
     depends_on:
       - spring
     ports:
-      - 80:3000
+      - 3456:3000
     volumes:
       - '../frontend/:/app'
       - '/app/node_modules'

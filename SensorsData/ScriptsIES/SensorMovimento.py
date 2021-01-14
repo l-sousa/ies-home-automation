@@ -39,7 +39,7 @@ if __name__ == '__main__':
         user_id = sys.argv[2]
         room = sys.argv[3]
         type = "Movimento"
-        client = paho.Client("sensor-Dis")
+        client = paho.Client("sensor-Dis"+user_id)
         client.connect("localhost",port=1883,keepalive=60,bind_address="")
         client.loop_start()
         Original_Distance = distance()
@@ -48,12 +48,11 @@ if __name__ == '__main__':
         ThreshHold = 1
         count = 1
         while True:
-            print(dist)
             if abs(dist - Original_Distance) < ThreshHold or abs(dist - LastDistance) < ThreshHold:
-                print("Movement? : ",False )
+                a = 5
+                #print("Movement? : ",False )
             else:
-                print("Movement? : ",True)
-                message = '{"user_id":'+user_id+',"type":"'+type+'","sensor_id":'+sensor_id+',"room":"'+room+'","timeStamp":"'+str(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))+'","value":'+str(round(1,2))+'}'
+                message = '{"user_id":"'+user_id+'","type":"'+type+'","sensor_id":'+sensor_id+',"room":"'+room+'","timeStamp":"'+str(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))+'","value":'+str(round(1,2))+'}'
                 client.publish("sensorData",message)
                 LastDistance = dist
             time.sleep(1)
