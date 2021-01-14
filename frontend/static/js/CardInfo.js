@@ -32,7 +32,7 @@ class CardInfo extends React.Component {
 
         var config = {
             method: 'get',
-            url: 'http://spring:8080/api/user/' + getCookie('access_token') + '/values/' + this.props.sensorId + '/period/' + this.props.hourRange
+            url: 'http://35.246.39.11:8080/api/user/' + getCookie('access_token') + '/values/' + this.props.sensorId + '/period/' + this.props.hourRange
         };
 
         axios(config)
@@ -54,7 +54,7 @@ class CardInfo extends React.Component {
 
         var config = {
             method: 'get',
-            url: 'http://spring:8080/api/user/' + getCookie('access_token') + '/values/' + this.props.sensorId + '/last/1'
+            url: 'http://35.246.39.11:8080/api/user/' + getCookie('access_token') + '/values/' + this.props.sensorId + '/last/1'
         };
         axios(config)
             .then(response => {

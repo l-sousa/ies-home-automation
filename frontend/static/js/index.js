@@ -24,7 +24,7 @@ const user_info = [];
 
 var config = {
     method: 'get',
-    url: 'http://spring:8080/api/user/' + getCookie('access_token')
+    url: 'http://35.246.39.11:8080/api/user/' + getCookie('access_token')
 };
 axios(config)
     .then(response => {
@@ -43,7 +43,7 @@ axios(config)
 
 var config = {
     method: 'get',
-    url: 'http://spring:8080/api/user/' + getCookie('access_token') + '/sensors'
+    url: 'http://35.246.39.11:8080/api/user/' + getCookie('access_token') + '/sensors'
 };
 axios(config)
     .then(response => {
