@@ -20,9 +20,9 @@ public class MqttConfiguration {
 	}
 
 	@Bean
-	public IMqttClient mqttClient(@Value("${mqtt.clientId}") String clientId,
+	public IMqttClient mqttClient(
 			@Value("${mqtt.hostname}") String hostname, @Value("${mqtt.port}") int port) throws MqttException {
-		IMqttClient mqttClient = new MqttClient("tcp://" + hostname + ":" + port, clientId);
+		IMqttClient mqttClient = new MqttClient("tcp://" + hostname + ":" + port, MqttClient.generateClientId());
 		mqttClient.connect(mqttConnectOptions());
 		return mqttClient;
 	}
