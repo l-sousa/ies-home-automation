@@ -13,15 +13,15 @@ if __name__ == '__main__':
         user_id = sys.argv[2]
         room = sys.argv[3]
         type = "Humidade"
-        client = paho.Client("sensor-Humidade")
+        client = paho.Client("sensor-Humidade"+user_id)
         client.connect("localhost",port=1883,keepalive=60,bind_address="")
         client.loop_start()
         value = 15
         rand = 0
         while True:
-            message = '{"user_id":'+user_id+',"type":"'+type+'","sensor_id":'+sensor_id+',"room":"'+room+'","timeStamp":"'+str(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))+'","value":'+str(round(value,2))+'}'
+            message = '{"user_id":"'+user_id+'","type":"'+type+'","sensor_id":'+sensor_id+',"room":"'+room+'","timeStamp":"'+str(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))+'","value":'+str(round(value,2))+'}'
             client.publish("sensorData",message)
-            print(message)
+            #print(message)
             rand = random.random()
             if rand < 0.5:
                 value += 0.01
