@@ -8,6 +8,7 @@ import java.time.Instant;
 import java.util.*;
 import com.homemonitor.homemonitor.model.Sensor;
 import com.homemonitor.homemonitor.model.Values;
+import com.homemonitor.homemonitor.model.User;
 import com.homemonitor.homemonitor.repository.SensorRepository;
 import com.homemonitor.homemonitor.repository.ValuesRepository;
 import com.homemonitor.homemonitor.repository.UserRepository;
@@ -45,11 +46,20 @@ public class SensorController {
     	BigInteger number = new BigInteger(1,digest);
     	String token = number.toString(16);
     	System.out.println(token);
+    	System.out.println(userRepository.findAllByToken(token));
         if (userRepository.findAllByToken(token).isEmpty()){
         	return new ResponseEntity<String>("",HttpStatus.LOCKED); 
         }else {
         	return new ResponseEntity<String>(token,HttpStatus.OK);
         }
+    }
+
+    @GetMapping("user/{userId}")
+    public User getUserInfo(@PathVariable String userId) {
+        System.out.println(userRepository.getNomeByToken(userId));
+        User u1 = userRepository.getNomeByToken(userId);
+        User u2 = new User(u1.getNome(), null, null);
+        return u2;
     }
     
     // Lists All Sensors
