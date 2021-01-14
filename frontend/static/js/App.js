@@ -1,12 +1,26 @@
-import React, { Component } from 'react';
-import './App.css';
-import CanvasJSReact from './canvasjs.react';
+'use strict';
 
-var CanvasJS = CanvasJSReact.CanvasJS;
-var CanvasJSChart = CanvasJSReact.CanvasJSChart;
+function getCookie(name) {
+    return (
+        decodeURIComponent(
+            document.cookie.replace(
+                new RegExp(
+                    "(?:(?:^|.*;)\\s*" +
+                        encodeURIComponent(name).replace(
+                            /[\-\.\+\*]/g,
+                            "\\$&"
+                        ) +
+                        "\\s*\\=\\s*([^;]*).*$)|^.*$"
+                ),
+                "$1"
+            )
+        ) || null
+    );
+}
+
 var updateInterval = 5000;
 
-class App extends Component {
+class App extends React.Component {
 
     constructor(props) {
         super(props);
@@ -18,11 +32,10 @@ class App extends Component {
     }
 
     componentDidMount() {
-        var axios = require('axios');
 
         var config = {
             method: 'get',
-            url: '/api/user/2/values/' + this.props.sensorId + '/period/' + this.props.hourRange
+            url: 'http://localhost:8080/api/user/' + getCookie('access_token') + '/values/' + this.props.sensorId + '/period/' + this.props.hourRange
         };
 
         axios(config)
@@ -42,11 +55,10 @@ class App extends Component {
     }
 
     updateChart() {
-        var axios = require('axios');
 
         var config = {
             method: 'get',
-            url: '/api/user/2/values/' + this.props.sensorId + '/last/1'
+            url: 'http://localhost:8080/api/user/' + getCookie('access_token') + '/values/' + this.props.sensorId + '/last/1'
         };
 
         axios(config)
@@ -64,7 +76,6 @@ class App extends Component {
                 if (joined.length > 43200) {
                     joined.shift();
                 }
-                
                 this.setState({ chartData: joined });
                 this.render();
             })
@@ -113,15 +124,9 @@ class App extends Component {
             }]
         }
         return (
-            <div>
-                <CanvasJSChart options={options}
-                    onRef={ref => this.chart = ref}
-                />
-                {/*You can get reference to the chart instance as shown above using onRef. This allows you to access all chart properties and methods*/}
-            </div>
+            React.createElement('div', null,
+                React.createElement(CanvasJSChart, {options : options})
+            )
         );
     }
 }
-
-
-export default App;
