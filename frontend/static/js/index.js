@@ -24,7 +24,7 @@ const user_info = [];
 
 var config = {
     method: 'get',
-    url: 'http://35.246.39.11:8080/api/user/' + getCookie('access_token')
+    url: 'http://localhost:8080/api/user/' + getCookie('access_token')
 };
 axios(config)
     .then(response => {
@@ -43,11 +43,11 @@ axios(config)
 
 var config = {
     method: 'get',
-    url: 'http://35.246.39.11:8080/api/user/' + getCookie('access_token') + '/sensors'
+    url: 'http://localhost:8080/api/user/' + getCookie('access_token') + '/sensors'
 };
 axios(config)
     .then(response => {
-        console.log('http://spring:8080/api/user/' + getCookie('access_token') + '/sensors')
+        console.log('http://localhost:8080/api/user/' + getCookie('access_token') + '/sensors')
         response.data.forEach(item => user_sensors_array.push({ id: item.id, type: item.type, room: item.room }));
         return user_sensors_array;
     })
