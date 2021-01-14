@@ -67,7 +67,7 @@
 
 <!-- RUN  -->
 ## How to Run
-(If you want to run this on localhost download the "localhost_v" release)
+(If you want to run this on localhost download the latest release)
 On the root folder run the following commands:
 
 ```
