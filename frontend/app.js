@@ -39,7 +39,7 @@ app.post('/login', (req, res) => {
     let data = new URLSearchParams(myParams).toString();
     request.post({
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        url: 'http://localhost:8080/api/login',
+        url: 'http://spring:8080/api/login',
         body: data
     }, function (err, response, body) {
         var cookie = req.cookies.cookieName;
