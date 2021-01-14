@@ -35,7 +35,7 @@ class App extends React.Component {
 
         var config = {
             method: 'get',
-            url: 'http://localhost:8080/api/user/' + getCookie('access_token') + '/values/' + this.props.sensorId + '/period/' + this.props.hourRange
+            url: 'http://spring:8080/api/user/' + getCookie('access_token') + '/values/' + this.props.sensorId + '/period/' + this.props.hourRange
         };
 
         axios(config)
@@ -58,7 +58,7 @@ class App extends React.Component {
 
         var config = {
             method: 'get',
-            url: 'http://localhost:8080/api/user/' + getCookie('access_token') + '/values/' + this.props.sensorId + '/last/1'
+            url: 'http://spring:8080/api/user/' + getCookie('access_token') + '/values/' + this.props.sensorId + '/last/1'
         };
 
         axios(config)
