@@ -53,6 +53,7 @@
 <details open="open">
   <summary>Table of Contents</summary>
   <ol>
+    <li><a href="#how-to-run">How to run</a></li>
     <li>
       <a href="#abstract">Abstract</a>
       <ul>
@@ -63,6 +64,25 @@
     <li><a href="#bookmarks">Bookmarks</a></li>
   </ol>
 </details>
+
+<!-- RUN  -->
+## How to Run
+(If you want to run this on localhost download the "localhost_v" release)
+On the root folder run the following commands:
+
+```
+cd Docker/
+docker-compose up -d
+```
+
+Notes:
+* The homemonitor.jar (from Spring) will be the one from our last build. No need to build it - in case you have to use this command: 
+  ```mvn package -Dmaven.test-skip=true```
+
+* When you run the docker-compose command a second time it will yield an warning. This is because the previous images are already built. If you do want to have the images re-built use this command: 
+  ```docker-compose up --build```
+* Due to the CORS policy you have to install this [extension](https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf) on chrome. Once installed toggle the extension on.  
+
 
 
 
